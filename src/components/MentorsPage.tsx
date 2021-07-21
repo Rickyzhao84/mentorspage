@@ -8,6 +8,7 @@ interface IMentorsPageProps {
     nameList: string[];
     profileList: string[];
     currentMentor: any;
+    mentorMap: any;
 }
 
 interface IMentorsPageState {}
@@ -23,6 +24,7 @@ class MentorsPage extends React.Component< IMentorsPageState, IMentorsPageProps>
             nameList: [],
             profileList: [],
             currentMentor: "",
+            mentorMap: []
         }
     }
 
@@ -32,6 +34,7 @@ class MentorsPage extends React.Component< IMentorsPageState, IMentorsPageProps>
             var descriptionList = [];
             var nameList = [];
             var profileList = [];
+            var mentorMap = new Map();
             const response = await axios.get(url);
             if (response.status === 200) {
                 this.setState({id: response.data.id});
@@ -41,7 +44,8 @@ class MentorsPage extends React.Component< IMentorsPageState, IMentorsPageProps>
                     profileList.push(response.data.data[i].profile);
                     nameList.push(response.data.data[i].firstName + " " + response.data.data[i].lastName); 
                 }
-                this.setState({descriptionList, nameList, profileList});
+
+                this.setState({descriptionList, nameList, profileList, mentorMap});
             }
         } catch (error) {
             console.log(error);
@@ -60,7 +64,7 @@ class MentorsPage extends React.Component< IMentorsPageState, IMentorsPageProps>
                 x
               </span>
               <div style={{ textAlign: "center" }}>
-                {this.state.descriptionList[props.index]}
+                {this.state.descriptionList[this.state.currentMentor]}
               </div>
             </div>
           </div>
@@ -77,28 +81,40 @@ class MentorsPage extends React.Component< IMentorsPageState, IMentorsPageProps>
             this.setState({ isOpen: !this.state.isOpen });
           };
         return (
-            <div>
-                <h5 style={{float: 'left'}}>
+            <div className="footer-icons">
+              <span>
+                <h5 className="footer-twitter">
                 {this.state.profileList.map((item, index) => (
                         <ul>
                             <img alt="profile" src={item} style={{width: "50px", height: "50px"}}></img>
                         </ul>
                     ))}
                 </h5>
-                <h5 style={{float: "right"}}>
+                </span>
+                <span>
+                <h5>
                     {this.state.nameList.map((item, index) => (
                         <div>
                         <button
-                        onClick={togglePopup}
-                        >
+                        onClick={() => {
+                          togglePopup()
+                          this.getCurrentMentor(index)
+                        }}
+                        ><h3 className="footer-fb">
                           {item}{this.state.isOpen && (
                         <this.PopupScreen handleClose={togglePopup} index={index}/>
                       )}
+                      </h3>
                       </button>
                       
                       </div>
                     ))}
                 </h5>
+                </span>
+                <div><h3>
+                  
+                  </h3>
+                </div>
             </div>
         )
     }

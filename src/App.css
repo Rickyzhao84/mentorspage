@@ -77,3 +77,24 @@
   border: 1px solid white;
   font-size: 20px;
 }
+
+#footer-twitter {
+  display:inline-block;
+}
+
+.footer-fb {
+  background-color: #61dafb;
+  top: 0px;
+  margin-bottom: 20px;
+  display:inline-block;
+}
+
+.footer-icons {
+  padding-top:40px;
+  width:300px;
+  margin:auto;
+  text-align:center;
+  vertical-align:middle;
+  display: flex;
+  align-items: center;
+}
