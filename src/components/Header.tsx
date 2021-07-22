@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../Hackillinoislogo.png";
 
 interface IContentState {
   bookContent?: {};
@@ -51,6 +52,13 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
         <table style={{ width: "100%" }}>
           <tbody style={{ width: "100%" }}>
             <tr>
+            <td style={{ verticalAlign: "middle", width: "80px" }}>
+                <img
+                  alt="iDigestApp"
+                  src={logo}
+                  style={{width: "80px", height: "80px"}}
+                />
+              </td>
               <td
                 style={{
                   verticalAlign: "middle",
@@ -66,7 +74,7 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
                   Home
                 </Link>
                 <Link
-                  style={this.linkStyle(2)}
+                  style={this.linkStyle(0)}
                   to="./mentors"
                   onClick={this.handleMentors}
                 >
@@ -80,7 +88,7 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
                   Prizes
                 </Link>
                 <Link
-                  style={this.linkStyle(3)}
+                  style={this.linkStyle(2)}
                   to="./schedule"
                   onClick={this.handleSchedule}
                 >
@@ -103,9 +111,9 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
         textDecoration: "underline solid grey",
         textDecorationThickness: "10px",
         textUnderlinePosition: "under",
-        color: "black",
+        color: "white",
       };
-    } else return { marginRight: "2.3em", color: "black" };
+    } else return { marginRight: "2.3em", color: "white" };
   }
 
   public componentDidMount(): void {

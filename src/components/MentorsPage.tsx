@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from "react";
+import { DefaultButton } from '@fluentui/react/lib/Button'
 
 interface IMentorsPageProps {
     id: string;
@@ -81,31 +82,42 @@ class MentorsPage extends React.Component< IMentorsPageState, IMentorsPageProps>
             this.setState({ isOpen: !this.state.isOpen });
           };
         return (
+          <div>
             <div className="footer-icons">
               <span>
-                <h5 className="footer-twitter">
+                <h5>
                 {this.state.profileList.map((item, index) => (
                         <ul>
-                            <img alt="profile" src={item} style={{width: "50px", height: "50px"}}></img>
+                            <img alt="profile" src={item} style={{width: "100px", height: "100px"}}></img>
                         </ul>
                     ))}
                 </h5>
                 </span>
+                </div>
                 <span>
                 <h5>
                     {this.state.nameList.map((item, index) => (
                         <div>
-                        <button
+                        <DefaultButton
+                        className="footer-fb"
+                        style={{marginBottom:"60px", top: "40px"}}
+                        styles={{
+                          root: {
+                            backgroundColor: "black",
+                            color: "white",
+                            borderRadius: "25px",
+                          },
+                        }}
                         onClick={() => {
                           togglePopup()
                           this.getCurrentMentor(index)
                         }}
-                        ><h3 className="footer-fb">
+                        ><h3 >
                           {item}{this.state.isOpen && (
                         <this.PopupScreen handleClose={togglePopup} index={index}/>
                       )}
                       </h3>
-                      </button>
+                      </DefaultButton>
                       
                       </div>
                     ))}
@@ -115,7 +127,7 @@ class MentorsPage extends React.Component< IMentorsPageState, IMentorsPageProps>
                   
                   </h3>
                 </div>
-            </div>
+                </div>
         )
     }
 }

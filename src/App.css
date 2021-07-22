@@ -37,6 +37,10 @@
   }
 }
 
+body {
+  background-image: url('./backgroundimage.jpg');
+}
+
 .popup-box {
   position: fixed;
   background: #00000050;
@@ -83,18 +87,17 @@
 }
 
 .footer-fb {
-  background-color: #61dafb;
-  top: 0px;
-  margin-bottom: 20px;
-  display:inline-block;
+  position: relative;
+  width: 50%;
+  float: left;
+  height: 100%;
+  z-index: 1010101010;
 }
 
 .footer-icons {
-  padding-top:40px;
-  width:300px;
-  margin:auto;
-  text-align:center;
-  vertical-align:middle;
-  display: flex;
-  align-items: center;
+  position: relative;
+  width: 50%;
+  float: left;
+  height: 100%;
+  z-index: 1010101010
 }
