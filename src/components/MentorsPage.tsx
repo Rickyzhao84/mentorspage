@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from "react";
 import { DefaultButton } from '@fluentui/react/lib/Button'
+import { SearchBox, ISearchBoxStyles } from "@fluentui/react/lib/SearchBox";
 
 interface IMentorsPageProps {
     id: string;
@@ -82,8 +83,9 @@ class MentorsPage extends React.Component< IMentorsPageState, IMentorsPageProps>
             this.setState({ isOpen: !this.state.isOpen });
           };
         return (
-          <div>
-            <div className="footer-icons">
+          <div id="profile">
+            <SearchBoxGroups></SearchBoxGroups>
+            <div className="footer-icons" >
               <span>
                 <h5>
                 {this.state.profileList.map((item, index) => (
@@ -131,5 +133,46 @@ class MentorsPage extends React.Component< IMentorsPageState, IMentorsPageProps>
         )
     }
 }
+
+const searchBoxStyles: Partial<ISearchBoxStyles> = {
+  root: { width: 280, height: 20 },
+};
+
+function filterFunction() {
+  let filter, table, tr, td, i, txtValue;
+  const input = document.getElementById("input");
+  if (input !== null) {
+    filter = (input as HTMLInputElement).value.toUpperCase();
+    table = document.getElementById("profile");
+    if (table !== null) {
+      tr = table.getElementsByTagName("span");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("h3")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            console.log(txtValue)
+            tr[i].style.display="";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+  }
+}
+
+export const SearchBoxGroups = () => (
+  <SearchBox
+    id="input"
+    styles={searchBoxStyles}
+    placeholder="Search"
+    onEscape={() => filterFunction()}
+    onClear={() => filterFunction()}
+    onChange={() => filterFunction()}
+    onSearch={() => filterFunction()}
+  />
+);
+
 
 export default MentorsPage;
