@@ -85,7 +85,7 @@ class MentorsPage extends React.Component< IMentorsPageState, IMentorsPageProps>
         return (
           <div id="profile">
             <SearchBoxGroups></SearchBoxGroups>
-            <div className="footer-icons" >
+            <div className="profileList" >
               <span>
                 <h5>
                 {this.state.profileList.map((item, index) => (
@@ -101,7 +101,7 @@ class MentorsPage extends React.Component< IMentorsPageState, IMentorsPageProps>
                     {this.state.nameList.map((item, index) => (
                         <div>
                         <DefaultButton
-                        className="footer-fb"
+                        className="leftList"
                         style={{marginBottom:"60px", top: "40px"}}
                         styles={{
                           root: {
@@ -135,7 +135,7 @@ class MentorsPage extends React.Component< IMentorsPageState, IMentorsPageProps>
 }
 
 const searchBoxStyles: Partial<ISearchBoxStyles> = {
-  root: { width: 280, height: 20 },
+  root: { width: 300, height: 30, borderRadius: "25%" },
 };
 
 function filterFunction() {
@@ -151,7 +151,7 @@ function filterFunction() {
         if (td) {
           txtValue = td.textContent || td.innerText;
           if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            console.log(txtValue)
+            console.log(tr[i])
             tr[i].style.display="";
           } else {
             tr[i].style.display = "none";
@@ -167,10 +167,8 @@ export const SearchBoxGroups = () => (
     id="input"
     styles={searchBoxStyles}
     placeholder="Search"
-    onEscape={() => filterFunction()}
     onClear={() => filterFunction()}
     onChange={() => filterFunction()}
-    onSearch={() => filterFunction()}
   />
 );
 

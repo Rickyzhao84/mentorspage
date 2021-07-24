@@ -86,7 +86,7 @@ body {
   display:inline-block;
 }
 
-.footer-fb {
+.leftList {
   position: relative;
   width: 50%;
   float: left;
@@ -94,7 +94,7 @@ body {
   z-index: 1010101010;
 }
 
-.footer-icons {
+.profileList {
   position: relative;
   width: 50%;
   float: left;
