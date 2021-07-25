@@ -10,7 +10,6 @@ interface IMentorsPageProps {
     nameList: string[];
     profileList: string[];
     currentMentor: any;
-    mentorMap: any;
 }
 
 interface IMentorsPageState {}
@@ -26,29 +25,26 @@ class MentorsPage extends React.Component< IMentorsPageState, IMentorsPageProps>
             nameList: [],
             profileList: [],
             currentMentor: "",
-            mentorMap: []
         }
     }
 
     public async componentDidMount(): Promise<void> {
         const url = 'https://api.hackillinois.org/upload/blobstore/mentors/';
         try {
-            var descriptionList = [];
-            var nameList = [];
-            var profileList = [];
-            var mentorMap = new Map();
-            const response = await axios.get(url);
-            if (response.status === 200) {
-                this.setState({id: response.data.id});
-                console.log(response.data.data);
-                for (var i = 0; i < response.data.data.length; i++) {
-                    descriptionList.push(response.data.data[i].description);
-                    profileList.push(response.data.data[i].profile);
-                    nameList.push(response.data.data[i].firstName + " " + response.data.data[i].lastName); 
-                }
-
-                this.setState({descriptionList, nameList, profileList, mentorMap});
+          var descriptionList = [];
+          var nameList = [];
+          var profileList = [];
+          const response = await axios.get(url);
+          if (response.status === 200) {
+            this.setState({id: response.data.id});
+            console.log(response.data.data);
+            for (var i = 0; i < response.data.data.length; i++) {
+              descriptionList.push(response.data.data[i].description);
+              profileList.push(response.data.data[i].profile);
+              nameList.push(response.data.data[i].firstName + " " + response.data.data[i].lastName); 
             }
+            this.setState({descriptionList, nameList, profileList});
+          }
         } catch (error) {
             console.log(error);
         }
@@ -89,47 +85,41 @@ class MentorsPage extends React.Component< IMentorsPageState, IMentorsPageProps>
               <span>
                 <h5>
                 {this.state.profileList.map((item, index) => (
-                        <ul>
-                            <img alt="profile" src={item} style={{width: "100px", height: "100px"}}></img>
-                        </ul>
-                    ))}
+                    <ul>
+                      <img alt="profile" src={item} style={{width: "100px", height: "100px"}}></img>
+                    </ul>
+                ))}
                 </h5>
-                </span>
-                </div>
-                <span>
-                <h5>
-                    {this.state.nameList.map((item, index) => (
-                        <div>
-                        <DefaultButton
-                        className="leftList"
-                        style={{marginBottom:"60px", top: "40px"}}
-                        styles={{
-                          root: {
-                            backgroundColor: "black",
-                            color: "white",
-                            borderRadius: "25px",
-                          },
-                        }}
-                        onClick={() => {
-                          togglePopup()
-                          this.getCurrentMentor(index)
-                        }}
-                        ><h3 >
-                          {item}{this.state.isOpen && (
-                        <this.PopupScreen handleClose={togglePopup} index={index}/>
-                      )}
+              </span>
+            </div>
+            <span>
+              <h5>
+                {this.state.nameList.map((item, index) => (
+                  <div>
+                    <DefaultButton
+                      className="leftList"
+                      style={{marginBottom:"60px", top: "40px"}}
+                      styles={{
+                      root: {
+                        backgroundColor: "black",
+                        color: "white",
+                        borderRadius: "25px",
+                      },
+                      }}
+                      onClick={() => {
+                        togglePopup()
+                        this.getCurrentMentor(index)
+                      }}>
+                      <h3>
+                        {item}
+                        {this.state.isOpen && (<this.PopupScreen handleClose={togglePopup} index={index}/>)}
                       </h3>
-                      </DefaultButton>
-                      
-                      </div>
-                    ))}
-                </h5>
-                </span>
-                <div><h3>
-                  
-                  </h3>
-                </div>
-                </div>
+                    </DefaultButton>
+                  </div>
+                  ))}
+              </h5>
+            </span>
+          </div>
         )
     }
 }
@@ -171,6 +161,5 @@ export const SearchBoxGroups = () => (
     onChange={() => filterFunction()}
   />
 );
-
 
 export default MentorsPage;

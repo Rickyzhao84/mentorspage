@@ -4,23 +4,14 @@ import Header from "./components/Header";
 import MentorsPage from './components/MentorsPage';
 
 import {
-  //BrowserRouter as Router,
   Switch,
   Route,
   HashRouter,
-  //Link
 } from "react-router-dom";
 
-interface IAppState {
-}
+interface IAppState {}
 
 class App extends React.Component<{}, IAppState> {
-
-
-  constructor(props: {}) {
-    super(props);
-
-  }
 
   public componentDidMount(): void {}
 
@@ -47,7 +38,6 @@ class App extends React.Component<{}, IAppState> {
       </HashRouter>
     );
   }
-
 }
 
 export default App;

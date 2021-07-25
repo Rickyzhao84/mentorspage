@@ -2,18 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../Hackillinoislogo.png";
 
-interface IContentState {
-  bookContent?: {};
-}
-
 interface IHeaderState {
   contentHeight: string;
   currentButton: number;
 }
 
-interface IHeaderProps {
-
-}
+interface IHeaderProps {}
 
 class Header extends React.Component<IHeaderProps, IHeaderState> {
 
@@ -24,8 +18,6 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
       currentButton: -10,
     };
   }
-
-  //        <button style={{border:'none'}} onClick={this.handleMyName}>my-name</button>
 
   handleHome = () => {
     this.setState({ currentButton: -1 });
@@ -46,18 +38,16 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
   };
 
   render(): React.ReactNode {
-    console.log("Header.render");
-    
     return (
         <table style={{ width: "100%" }}>
           <tbody style={{ width: "100%" }}>
             <tr>
-            <td style={{ verticalAlign: "middle", width: "80px" }}>
-                <img
-                  alt="iDigestApp"
-                  src={logo}
-                  style={{width: "80px", height: "80px"}}
-                />
+              <td style={{ verticalAlign: "middle", width: "80px" }}>
+                  <img
+                    alt="HackIllinoisLogo"
+                    src={logo}
+                    style={{width: "80px", height: "80px"}}
+                  />
               </td>
               <td
                 style={{
@@ -95,18 +85,16 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
                   Schedule
                 </Link>
               </td>
-              
             </tr>
           </tbody>
         </table>
       );
     }
   
-
   private linkStyle(buttonIdx: number) {
     if (buttonIdx === this.state.currentButton) {
       return {
-        marginRight: "2.3em", //"15px",
+        marginRight: "2.3em",
         fontSize: "20px",
         textDecoration: "underline solid grey",
         textDecorationThickness: "10px",
