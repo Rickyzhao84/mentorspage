@@ -37,7 +37,6 @@ class MentorsPage extends React.Component< IMentorsPageState, IMentorsPageProps>
           const response = await axios.get(url);
           if (response.status === 200) {
             this.setState({id: response.data.id});
-            console.log(response.data.data);
             for (var i = 0; i < response.data.data.length; i++) {
               descriptionList.push(response.data.data[i].description);
               profileList.push(response.data.data[i].profile);
